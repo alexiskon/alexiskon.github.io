@@ -1,13 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
-  {
-    path: "",
-    component: HomeComponent
-  }
-];
+    { path: "home", loadChildren: () => import("./../app/pages/home/home.module").then(m => m.HomeModule) },
+    { path: "desktop", loadChildren: () => import("./../app/pages/desktop-home/desktop-home/desktop-home.module").then(m => m.DesktopHomeModule)
+  }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

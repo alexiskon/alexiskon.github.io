@@ -1,22 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../services/api.service';
-import { AppToastService } from '../../services/toast.service';
+import { faLanguage } from '@fortawesome/free-solid-svg-icons';
+import { faTextHeight } from '@fortawesome/free-solid-svg-icons';
+import { ApiService } from 'src/app/services/api.service';
+import { AppToastService } from 'src/app/services/toast.service';
 import exportFromJSON from 'export-from-json'
 import * as FileSaver from 'file-saver';
-import RecordRTC, { invokeSaveAsDialog } from 'recordrtc'
-
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-desktop-home',
+  templateUrl: './desktop-home.component.html',
+  styleUrls: ['./desktop-home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class DesktopHomeComponent implements OnInit {
 
   constructor(
     private apiService: ApiService,
-    private toastService: AppToastService,
-  ) {}
+    private toastService: AppToastService
+  ) { }
+
+  jsonIcon = '{ }';
+  faTextHeight = faTextHeight;
+  faLanguage = faLanguage;
+
+  displayJsonFormatDialog: boolean = false;
+  displayRawTextDialog: boolean = false;
+  displayLanguageDetectionDialog: boolean = false;
 
   languages = [
     {value: 'el', name: 'Greek'},
@@ -39,10 +47,19 @@ export class HomeComponent implements OnInit {
   languageDetectionResult: any;
   textToDetectLanguage: any;
 
-  recorder: any;
-
   ngOnInit(): void {
+  }
 
+  jsonFormatDialog() {
+    this.displayJsonFormatDialog = !this.displayJsonFormatDialog;
+  }
+
+  rawTextDialog() {
+    this.displayRawTextDialog = !this.displayRawTextDialog;
+  }
+
+  languageDetectionDialog() {
+    this.displayLanguageDetectionDialog = !this.displayLanguageDetectionDialog;
   }
 
   handleTabChange(event: any) {
@@ -136,32 +153,6 @@ export class HomeComponent implements OnInit {
       var blob = new Blob([this.translationResultToDownloadText], {type: "text/plain;charset=utf-8"});
       FileSaver.saveAs(blob, "translation.txt");
     }
-  }
-
-  startAudioRecording() {
-    let self = this;
-    navigator.mediaDevices.getUserMedia({
-      audio: true
-  }).then(async function(stream) {
-      self.recorder = new  RecordRTC(stream, {
-          type: 'audio'
-      });
-      self.recorder.startRecording();    
-  });
-  }
-
-  stopAudioRecording() {
-    let self = this;
-    this.recorder.stopRecording(function() {
-      let blob = self.recorder.getBlob();
-      self.apiService.speech2text(blob).subscribe((res: any) => {
-        console.log(res);
-      }, err => console.log(err)
-      )
-    });
-    
-    // RecordRTC.StereoAudioRecorder.stop();
-    // this.recorder.stop()
   }
 
 }

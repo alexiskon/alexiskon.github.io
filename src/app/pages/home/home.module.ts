@@ -9,6 +9,13 @@ import { DropdownModule } from 'primeng/dropdown';
 import {TooltipModule} from 'primeng/tooltip';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {TabViewModule} from 'primeng/tabview';
+import { RouterModule, Routes } from '@angular/router';
+
+const routes: Routes = [
+  { path: "",
+    component: HomeComponent,
+  }
+];
 
 @NgModule({
   declarations: [
@@ -18,6 +25,7 @@ import {TabViewModule} from 'primeng/tabview';
     CommonModule,
     InputTextModule,
     ButtonModule,
+    RouterModule.forChild(routes),
     DropdownModule,
     TooltipModule,
     PanelModule,

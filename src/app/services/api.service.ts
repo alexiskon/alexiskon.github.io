@@ -22,4 +22,8 @@ export class ApiService {
     return this.http.post<any>(`http://160.40.52.83:8000/services/identify`, payload);
   }
 
+  public speech2text(payload: any) {
+    return this.http.post<any>(`http://160.40.52.83:8000/services/speech2text`, payload);
+  }
+
 }

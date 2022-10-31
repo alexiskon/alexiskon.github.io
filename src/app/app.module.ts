@@ -3,12 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule} from '@angular/forms';
 import { HomeModule } from './pages/home/home.module';
+import { DesktopHomeModule } from './pages/desktop-home/desktop-home/desktop-home.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +21,8 @@ import { HomeModule } from './pages/home/home.module';
     ToastrModule.forRoot(),
     HttpClientModule,
     LoadingBarHttpClientModule,
-    HomeModule
+    HomeModule,
+    DesktopHomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
