@@ -1,0 +1,71 @@
+<div class="page-wrapper">
+    <div class="d-flex justify-content-center">
+        <h3>Welcome</h3>
+    </div>
+    <div class="row d-flex justify-content-center space">
+        <span class="description-style">This application aims to automatically translate JSON and raw text inputs from English to four other languages, namely Spanish, French, Greek and German. It is based on deep learning techniques and specifically Neural Machine Translation. Compared to conventional statistical and rule-based translation algorithms, Neural Machine Translation uses deep learning models to provide translation that is more accurate and sounds more human. This translation service leverages EasyNMT (https://github.com/UKPLab/EasyNMT) package for fast and accurate translations and FastAPI (https://github.com/tiangolo/fastapi)for API calls. Finally, we target to provide asynchronous batch processing, with a single API call, in order to translate large collections of JSON files in a few seconds. </span>
+    </div>
+    <div class="row d-flex justify-content-center space">
+        <p-tabView [activeIndex]="tabActiveIndex" (onChange)="handleTabChange($event)" class="tabpanel-width">
+            <p-tabPanel header="JSON Format">
+                <div class="upload-container">
+                    <div class="d-flex justify-content-center">
+                        <h4 class="text-style">Upload file to translate</h4>
+                    </div>
+                    <div class="input-group">
+                        <input (change)="onFileChange($event)" type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                        <button (click)="upload()" class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Convert</button>
+                        
+                    </div>
+                    <br/>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <h5 class="text-style" style="margin-right: 5px;">Language to translate:</h5>
+                        <p-dropdown [options]="languages" [(ngModel)]="target_language" optionLabel="name" optionValue="value"></p-dropdown>
+                    </div>
+                </div>
+            </p-tabPanel>
+            <p-tabPanel header="Raw text">
+                <div class="d-flex justify-content-center" style="flex-direction: column;">
+                    <div class="row">
+                        <h4 class="text-style">Insert raw text to translate</h4>
+                        <textarea [(ngModel)]="rawTextToTranslate" style="background: transparent;border: 1px solid;padding: 10px" rows="5" cols="30" pInputTextarea></textarea>
+                    </div>
+                    <div class="d-flex justify-content-center align-items-center space">
+                        <h5 style="margin-right: 5px;">Language to translate:</h5>
+                        <p-dropdown [options]="languages" [(ngModel)]="target_language" optionLabel="name" optionValue="value"></p-dropdown>
+                    </div>
+                    <div class="row space" style="justify-content: center;">
+                        <button style="width: auto;" (click)="upload()" class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Submit</button>
+                    </div>
+                </div>
+            </p-tabPanel>
+            <p-tabPanel header="Language Detection">
+                <div class="d-flex justify-content-center" style="flex-direction: column;">
+                    <div class="row justify-content-center">
+                        <h4 class="text-style">Insert raw text to detect the language</h4>
+                        <textarea [(ngModel)]="textToDetectLanguage" style="background: transparent;border: 1px solid;padding: 10px;width: 50vw;" rows="5" cols="30" pInputTextarea></textarea>
+                    </div>
+                    <div class="row space" style="justify-content: center;">
+                        <button style="width: auto;" (click)="textLanguageDetection()" class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Detect Language</button>
+                    </div>
+                </div>
+            </p-tabPanel>
+        </p-tabView>
+        
+        
+    </div>
+    <div *ngIf="translationResultToDownloadJson && tabActiveIndex === 0" class="d-flex space results">
+        <h5 style="padding-left: unset!important">Results</h5>
+        <textarea style="min-height: 40vh;border-radius: 20px;width: 70vw;" pInputTextarea [disabled]="true" [ngModel]="translationResultToDownloadJson | json"></textarea>
+        <button (click)="downloadGeneratedTranslations()" style="width: auto;margin: 20px;color: black;" pButton pRipple type="button" label="Download" class="p-button-raised p-button-info p-button-text"></button>
+    </div>
+    <div *ngIf="translationResultToDownloadText && tabActiveIndex === 1" class="d-flex space results">
+        <h5 style="padding-left: unset!important">Results</h5>
+        <textarea style="min-height: 40vh;border-radius: 20px;width: 70vw;" pInputTextarea [disabled]="true" [ngModel]="translationResultToDownloadText"></textarea>
+        <button (click)="downloadGeneratedTranslations()" style="width: auto;margin: 20px;color: black;" pButton pRipple type="button" label="Download" class="p-button-raised p-button-info p-button-text"></button>
+    </div>
+    <div *ngIf="languageDetectionResult && tabActiveIndex === 2" class="d-flex space results">
+        <h5 style="padding-left: unset!important">Result</h5>
+        <span style="font-weight: bold;">{{languageDetectionResult}}</span>
+    </div>
+</div>

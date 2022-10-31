@@ -1,0 +1,54 @@
+
+:host ::ng-deep .p-tabview {
+    .p-tabview-panels{
+       background: transparent!important;
+       border: 2px solid white;
+       border-radius: 0px 10px 10px 10px;
+   }
+   .p-tabview-panel {
+        display: flex;
+        justify-content: center;
+   }
+}
+
+:host ::ng-deep {
+    @media screen and (min-width: 370px) {
+        .tabpanel-width  {
+            max-width: 70vw;
+        }
+      }
+}
+
+.page-wrapper {
+    padding: 40px;
+    @media screen and (min-width: 800px) {
+        .upload-container {
+            max-width: 50vw;
+        }
+      }
+      .space {
+        margin-top: 25px;
+      }
+      .description-style {
+        max-height: 40vh;
+        max-width: 70vw;
+        text-align: center;
+        box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2); 
+        border-radius: 5px;
+        overflow: hidden;
+        padding: 20px;
+      }
+      @media screen and (max-width: 600px) {
+        .description-style {
+            overflow-y: scroll;
+        }
+      }
+    .text-style {
+        text-align: center;
+    }
+    .results {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+}
