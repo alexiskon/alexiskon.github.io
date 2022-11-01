@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,19 +12,19 @@ export class ApiService {
   ) { }
 
   public jsonTranslate(payload: any) {
-    return this.http.post<any>(`http://160.40.52.83:8000/services/translate/json`, payload);
+    return this.http.post<any>(`${environment}/services/translate/json`, payload);
   }
 
   public textTranslate(payload: any) {
-    return this.http.post<any>(`http://160.40.52.83:8000/services/translate/text`, payload);
+    return this.http.post<any>(`${environment}/services/translate/text`, payload);
   }
 
   public langulageDetectionService(payload: any) {
-    return this.http.post<any>(`http://160.40.52.83:8000/services/identify`, payload);
+    return this.http.post<any>(`${environment}/services/identify`, payload);
   }
 
   public speech2text(payload: any) {
-    return this.http.post<any>(`http://160.40.52.83:8000/services/speech2text`, payload);
+    return this.http.post<any>(`${environment}/services/speech2text`, payload);
   }
 
 }
