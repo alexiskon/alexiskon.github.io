@@ -1,3 +1,0 @@
-fastapi==0.75.2
-EasyNMT==2.0.1
-uvicorn==0.11.3
