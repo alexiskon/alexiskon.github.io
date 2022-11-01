@@ -12,19 +12,19 @@ export class ApiService {
   ) { }
 
   public jsonTranslate(payload: any) {
-    return this.http.post<any>(`${environment}/services/translate/json`, payload);
+    return this.http.post<any>(`${environment.apiUrl}/services/translate/json`, payload);
   }
 
   public textTranslate(payload: any) {
-    return this.http.post<any>(`${environment}/services/translate/text`, payload);
+    return this.http.post<any>(`${environment.apiUrl}/services/translate/text`, payload);
   }
 
   public langulageDetectionService(payload: any) {
-    return this.http.post<any>(`${environment}/services/identify`, payload);
+    return this.http.post<any>(`${environment.apiUrl}/services/identify`, payload);
   }
 
   public speech2text(payload: any) {
-    return this.http.post<any>(`${environment}/services/speech2text`, payload);
+    return this.http.post<any>(`${environment.apiUrl}/services/speech2text`, payload);
   }
 
 }
