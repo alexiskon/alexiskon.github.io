@@ -98,7 +98,6 @@ export class AudioRecordingService {
       }, () => {
         this.stopMedia();
         this._recordingFailed.next('');
-        console.log(this.record)
       });
     }
   }

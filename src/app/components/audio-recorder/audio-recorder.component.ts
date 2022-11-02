@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ToastrService } from 'ngx-toastr';
+import { forkJoin, last } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
 import { AudioRecordingService } from 'src/app/services/audio-recording.service';
 import { AppToastService } from 'src/app/services/toast.service';
@@ -56,23 +57,25 @@ export class AudioRecorderComponent implements OnInit {
       this.audioRecordingService.stopRecording();
       this.isRecording = false;
       this.audioRecordingService.getRecordedBlob().subscribe((data) => {
-        // this.recordedAudio = data;
+        console.log(data)
         this.blobUrl = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(data.blob));
+        this.recordedAudio = data
       });
     }
   }
 
   clearRecordedData() {
     this.blobUrl = null;
-    // this.recordedAudio = null;
+    this.recordedAudio = null;
   }
 
   uploadRecording() {
-    console.log(this.audioRecordingService.getRecordedBlob())
-    this.apiSerice.speech2text(this.audioRecordingService.getRecordedBlob()).subscribe((res: any) => {
+    let formData = new FormData();
+    formData.append('audio_file', this.recordedAudio.blob);
+    this.apiSerice.speech2text(formData).subscribe((res: any) => {
       console.log(res)
     }, err => {
-      console.log(err);
+      console.log(err)
     })    
   }
 

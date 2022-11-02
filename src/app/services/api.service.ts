@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
@@ -10,6 +10,8 @@ export class ApiService {
   constructor(
     private http: HttpClient
   ) { }
+
+  xmlReq = new XMLHttpRequest();
 
   public jsonTranslate(payload: any) {
     return this.http.post<any>(`${environment.apiUrl}/services/translate/json`, payload);
