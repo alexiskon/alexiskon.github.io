@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { AppToastService } from '../../services/toast.service';
-import exportFromJSON from 'export-from-json'
-import * as FileSaver from 'file-saver';
-import RecordRTC, { invokeSaveAsDialog } from 'recordrtc'
-
 
 @Component({
   selector: 'app-home',
@@ -15,7 +11,6 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private apiService: ApiService,
-    private toastService: AppToastService,
   ) {}
 
   languages = [
@@ -25,21 +20,7 @@ export class HomeComponent implements OnInit {
     {value: 'de', name: 'German'}
   ]
 
-  file: any;
-  source_language = 'en';
-  target_language: any;
   tabActiveIndex: number = 0;
-
-  translationResultToDownloadJson: any;
-  translationResultToDownloadText: any;
-  rawTextToTranslate: any;
-  translationResult: any;
-
-  textDetection: any;
-  languageDetectionResult: any;
-  textToDetectLanguage: any;
-
-  recorder: any;
 
   ngOnInit(): void {
 
@@ -47,121 +28,6 @@ export class HomeComponent implements OnInit {
 
   handleTabChange(event: any) {
     this.tabActiveIndex = event.index;
-  }
-
-  onFileChange(event: any) {
-    let file = event.target.files[0];
-    let fileReader: FileReader = new FileReader();
-    let self = this;
-    fileReader.onloadend = function(x) {
-      self.file = fileReader.result;
-    }
-    fileReader.readAsText(file);
-    fileReader.onerror = function () {
-      self.toastService.errorMessage(`Please check the files 's format`);
-    }
-  }
-
-  upload() {
-    if (this.tabActiveIndex === 0) {
-      try {
-        let payload = {
-          source_language: this.source_language,
-          target_language: this.target_language,
-          translate: JSON.parse(this.file)
-        }
-        if ( this.file ) {
-          this.apiService.jsonTranslate(payload).subscribe((res: any) => {
-            if (res.translations) {
-              this.translationResultToDownloadJson = res.translations;
-              this.toastService.successMessage('Uploaded sucessfully.')
-            } else {
-              this.toastService.errorMessage(res[0])
-            }
-            
-          })
-        }
-      } catch (e) {
-        console.log(e);
-        this.toastService.errorMessage(`Please check the files 's format`);
-      }
-    } else {
-      try {
-        let payload = {
-          source_language: this.source_language,
-          target_language: this.target_language,
-          translate: this.rawTextToTranslate
-        }
-        if ( this.rawTextToTranslate ) {
-          this.apiService.textTranslate(payload).subscribe((res: any) => {
-            if (res.translations) {
-              console.log(res);
-              this.translationResultToDownloadText = res.translations;
-              this.toastService.successMessage('Uploaded sucessfully.')
-            } else {
-              this.toastService.errorMessage(res[0])
-            }
-            
-          })
-        }
-      } catch (e) {
-        console.log(e);
-        this.toastService.errorMessage(`Something went wrong.`);
-      }
-    }
-  }
-
-  textLanguageDetection() {
-    try {
-      let payload = {
-        identify: this.textToDetectLanguage
-      }
-      this.apiService.langulageDetectionService(payload).subscribe((res: any) => {
-        this.languageDetectionResult = res.language;
-      })
-    } catch(e) {
-      console.log(e);
-      this.toastService.errorMessage(`Something went wrong.`);
-    }
-  }
-
-  downloadGeneratedTranslations() {
-    let data: any;
-    if ( this.tabActiveIndex === 0) {
-      data = this.translationResultToDownloadJson;
-      const fileName = 'download'
-      const exportType = 'json'
-      exportFromJSON({ data, fileName, exportType })
-    } else {
-      var blob = new Blob([this.translationResultToDownloadText], {type: "text/plain;charset=utf-8"});
-      FileSaver.saveAs(blob, "translation.txt");
-    }
-  }
-
-  startAudioRecording() {
-    let self = this;
-    navigator.mediaDevices.getUserMedia({
-      audio: true
-  }).then(async function(stream) {
-      self.recorder = new  RecordRTC(stream, {
-          type: 'audio'
-      });
-      self.recorder.startRecording();    
-  });
-  }
-
-  stopAudioRecording() {
-    let self = this;
-    this.recorder.stopRecording(function() {
-      let blob = self.recorder.getBlob();
-      self.apiService.speech2text(blob).subscribe((res: any) => {
-        console.log(res);
-      }, err => console.log(err)
-      )
-    });
-    
-    // RecordRTC.StereoAudioRecorder.stop();
-    // this.recorder.stop()
   }
 
 }

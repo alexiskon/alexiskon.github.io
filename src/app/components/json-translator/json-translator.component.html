@@ -1,0 +1,21 @@
+<div class="upload-container">
+    <div class="d-flex justify-content-center">
+        <h4 class="text-style">Upload file to translate</h4>
+    </div>
+    <div class="input-group">
+        <input (change)="onFileChange($event)" type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+        <button (click)="upload()" class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Convert</button>
+        
+    </div>
+    <br/>
+    <div class="d-flex justify-content-center align-items-center">
+        <h5 class="text-style" style="margin-right: 5px;">Language to translate:</h5>
+        <p-dropdown [options]="languages" [(ngModel)]="target_language" optionLabel="name" optionValue="value"></p-dropdown>
+    </div>
+</div>
+
+<div *ngIf="translationResultToDownloadJson" class="d-flex space results">
+    <h5 style="padding-left: unset!important">Results</h5>
+    <textarea style="min-height: 40vh;border-radius: 20px;width: 70vw;" pInputTextarea [disabled]="true" [ngModel]="translationResultToDownloadJson | json"></textarea>
+    <button (click)="downloadGeneratedTranslations()" style="width: auto;margin: 20px;color: black;" pButton pRipple type="button" label="Download" class="p-button-raised p-button-info p-button-text"></button>
+</div>
