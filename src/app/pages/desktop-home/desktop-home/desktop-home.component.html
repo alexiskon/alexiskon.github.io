@@ -1,4 +1,4 @@
-<div class="dark-mode-switcher">
+<div class="dark-mode-switcher" *ngIf="displayDarkModeSwitcher">
     <div style="display: flex;align-items: center;justify-content: center;margin: 0;transition: background 0.2s linear;">
         <input [(ngModel)]="darkMode$" type="checkbox" class="checkbox" id="checkbox" (change)="onToggle()">
         <label for="checkbox" class="label" [ngStyle]="{'background-color': darkMode$ ? 'rgb(167 70 185)': 'rgb(255 248 42)'}">
@@ -34,17 +34,17 @@
     </div>
 </div>
 
-<p-dialog styleClass="glass" header="JSON Format" [maximizable]="true" [(visible)]="displayJsonFormatDialog" [style]="{'width': '80vw', 'height': '80vh', 'border': 'none'}">
+<p-dialog styleClass="glass" (onHide)="dialogClosed()" (onShow)="dialogOpened()" header="JSON Format" [maximizable]="true" [(visible)]="displayJsonFormatDialog" [style]="{'width': '80vw', 'height': '80vh', 'border': 'none'}">
     <app-json-translator [languages]="languages"></app-json-translator>
 </p-dialog>
 
-<p-dialog header="Raw Text" [maximizable]="true"[(visible)]="displayRawTextDialog" [style]="{'width': '80vw', 'height': '80vh', 'border': 'none'}">
+<p-dialog header="Raw Text" (onHide)="dialogClosed()" (onShow)="dialogOpened()" [maximizable]="true"[(visible)]="displayRawTextDialog" [style]="{'width': '80vw', 'height': '80vh', 'border': 'none'}">
     <app-raw-text-translator [languages]="languages"></app-raw-text-translator>
 </p-dialog>
 
-<p-dialog header="Language Detection" [maximizable]="true" [(visible)]="displayLanguageDetectionDialog" [style]="{'width': '80vw', 'height': '80vh', 'border': 'none'}">
+<p-dialog header="Language Detection" (onHide)="dialogClosed()" (onShow)="dialogOpened()" [maximizable]="true" [(visible)]="displayLanguageDetectionDialog" [style]="{'width': '80vw', 'height': '80vh', 'border': 'none'}">
     <app-language-detection></app-language-detection>
 </p-dialog>
-<p-dialog header="Audio Recording" [maximizable]="true" [(visible)]="displayAudioRecordingDialog" [breakpoints]="{'900px': '70vw'}" [style]="{'width': '40vw', 'height': '40vh', 'border': 'none'}">
+<p-dialog header="Audio Recording" (onHide)="dialogClosed()" (onShow)="dialogOpened()" [maximizable]="true" [(visible)]="displayAudioRecordingDialog"  [style]="{'width': '80vw', 'height': '80vh', 'border': 'none'}">
    <app-audio-recorder></app-audio-recorder>
 </p-dialog>

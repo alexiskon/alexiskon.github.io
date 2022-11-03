@@ -17,6 +17,7 @@ export class DesktopHomeComponent implements OnInit {
   ) { }
 
   darkMode$: boolean = false;
+  displayDarkModeSwitcher: boolean = true;
 
   jsonIcon = '{ }';
   faTextHeight = faTextHeight;
@@ -64,6 +65,14 @@ export class DesktopHomeComponent implements OnInit {
       document.body.classList.remove('dark-mode');
       document.body.classList.add('light-theme');
     }
+  }
+
+  dialogOpened() {
+    this.displayDarkModeSwitcher = false;
+  }
+
+  dialogClosed() {
+    this.displayDarkModeSwitcher = true;
   }
 
 }

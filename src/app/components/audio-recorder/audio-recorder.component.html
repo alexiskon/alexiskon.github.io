@@ -4,9 +4,19 @@
     </audio>
 </div>
 <div class="space d-flex align-items-center width-responsive" style="justify-content: space-evenly;flex-wrap: wrap;">
-    <button *ngIf="!isRecording && !blobUrl" (click)="startRecording()" pButton pRipple type="button" label="Start Recording" class="p-button-raised p-button-success p-button-text"></button>
+    <button *ngIf="!isRecording && !blobUrl" (click)="startRecording()" pButton pRipple type="button" label="Start Recording" class="start-button p-button-raised p-button-success p-button-text"></button>
     <button *ngIf="isRecording && !blobUrl" (click)="stopRecording()" pButton pRipple type="button" label="Stop Recording" class="p-button-raised p-button-danger"></button>
     <button *ngIf="!isRecording && blobUrl" (click)="clearRecordedData()" pButton pRipple type="button" label="Clear Recording" class="p-button-raised p-button-warning"></button>
     <button *ngIf="!isRecording && blobUrl" (click)="uploadRecording()" pButton pRipple type="button" label="Upload Recording" class="p-button-raised p-button-info"></button>
     <div *ngIf="isRecording && !blobUrl"> <b>{{recordedTime}}</b> </div>
+</div>
+<div *ngIf="results" class="space">
+    <p-tabView>
+        <p-tabPanel header="Original audio">
+            <textarea style="min-height: 40vh;border-radius: 20px;width: 70vw;border: 3px solid;background: transparent;" [disabled]="true" [ngModel]="originalResult"></textarea>
+        </p-tabPanel>
+        <p-tabPanel header="Translated audio">
+            Content 2
+        </p-tabPanel>
+    </p-tabView>
 </div>

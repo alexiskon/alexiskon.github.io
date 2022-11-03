@@ -33,6 +33,12 @@ body.light-theme {
             border-top: 2px solid;
         }
     }
+    .p-tabview-nav-container {
+        background: transparent;
+    }
+    .p-tabview-panels {
+        background: transparent;
+    }
 }
 
 body.dark-mode {
@@ -62,6 +68,12 @@ body.dark-mode {
             border-top: 2px solid;
         }
     }
+    .p-tabview-nav-container {
+        background: transparent;
+    }
+    .p-tabview-panels {
+        background: transparent;
+    }
     .btn {
         color: white!important;
         background: black!important;
@@ -70,5 +82,12 @@ body.dark-mode {
     .btn:hover {
         color: black!important;
         background: white!important;
+    }
+    .start-button {
+        border: 1px solid #7ffe9f!important;
+    }
+    .start-button:hover {
+        background: #7ffe9f!important;
+        color: black;
     }
 }

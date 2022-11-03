@@ -15,6 +15,8 @@ export class AudioRecorderComponent implements OnInit {
   recordedTime: any;
   blobUrl: any;
   recordedAudio: any;
+  results: boolean = false;
+  originalResult: any;
 
   constructor(
       private audioRecordingService: AudioRecordingService,
@@ -64,6 +66,7 @@ export class AudioRecorderComponent implements OnInit {
   clearRecordedData() {
     this.blobUrl = null;
     this.recordedAudio = null;
+    this.results = false;
   }
 
   uploadRecording() {
@@ -71,6 +74,13 @@ export class AudioRecorderComponent implements OnInit {
     formData.append('audio_file', this.recordedAudio.blob);
     this.apiSerice.speech2text(formData).subscribe((res: any) => {
       console.log(res)
+      if (res.original) {
+        this.originalResult = res.original;
+        this.results = true;
+      } else {
+        this.toastService.error('Please speak clearly or closer to the microphone');
+        this.results = false;
+      }
     }, err => {
       console.log(err)
     })    
