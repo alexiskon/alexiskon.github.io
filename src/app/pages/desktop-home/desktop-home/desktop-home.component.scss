@@ -61,7 +61,7 @@
     .p-dialog-header {
         background: transparent;
         // color: white;
-        border-radius: 5px;
+        border-radius: 15px 15px 0px 0px;
         border: 2px solid;
         border-bottom: none;
     }
@@ -71,7 +71,7 @@
     .p-dialog-content {
         background: transparent;
         // color: white;
-        border-radius: 5px;
+        border-radius: 0px 0px 15px 15px;
         border: 2px solid;
     }
 }
