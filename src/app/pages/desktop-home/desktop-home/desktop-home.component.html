@@ -1,3 +1,14 @@
+<div class="dark-mode-switcher">
+    <div style="display: flex;align-items: center;justify-content: center;margin: 0;transition: background 0.2s linear;">
+        <input [(ngModel)]="darkMode$" type="checkbox" class="checkbox" id="checkbox" (change)="onToggle()">
+        <label for="checkbox" class="label" [ngStyle]="{'background-color': darkMode$ ? 'rgb(167 70 185)': 'rgb(255 248 42)'}">
+            <fa-icon class="icon-style" [icon]="faMoon"></fa-icon>
+            <fa-icon class="icon-style" [icon]="faSun"></fa-icon>
+        <div class='ball'></div>
+        </label>
+    </div>
+</div>
+
 <div class="main-container" [ngClass]="{'blur-effect': displayJsonFormatDialog || displayRawTextDialog || displayLanguageDetectionDialog || displayAudioRecordingDialog}">
     <div class="content">
         <div class="d-flex justify-content-center">

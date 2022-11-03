@@ -15,6 +15,6 @@
 
 <div *ngIf="translationResultToDownloadJson" class="d-flex space results">
     <h5 style="padding-left: unset!important">Results</h5>
-    <textarea style="min-height: 40vh;border-radius: 5px;width: 70vw;border: 2px solid" pInputTextarea [disabled]="true" [ngModel]="translationResultToDownloadJson | json"></textarea>
-    <button (click)="downloadGeneratedTranslations()" style="width: auto;margin: 20px;color: black;" pButton pRipple type="button" label="Download" class="p-button-raised p-button-info p-button-text"></button>
+    <textarea style="min-height: 40vh;border-radius: 5px;width: 70vw;border: 2px solid" [disabled]="true" [ngModel]="translationResultToDownloadJson | json"></textarea>
+    <button (click)="downloadGeneratedTranslations()" style="width: auto;margin: 20px;" class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Download</button>
 </div>

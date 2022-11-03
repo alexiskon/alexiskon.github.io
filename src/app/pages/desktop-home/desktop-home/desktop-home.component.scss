@@ -3,27 +3,30 @@
     height: 100vh;
     // background-image: linear-gradient(to right top, #1f86ed, #edeaea, #ffffff);
     overflow-x: hidden;
+    
     .content {
         display: flex;
         align-items: center;
         flex-direction: column;
         margin-top: 20vh;
+
         .description-style {
             max-height: 40vh;
             max-width: 70vw;
             text-align: center;
-            box-shadow: 0 0 1rem 0 #bebebe; 
+            box-shadow: 0 0 1rem 0 #bebebe;
             border-radius: 5px;
             overflow: hidden;
             padding: 20px;
-          }
+        }
+
         @media screen and (max-width: 600px) {
-        .description-style {
-            overflow-y: scroll;
+            .description-style {
+                overflow-y: scroll;
             }
         }
     }
-    
+
     .footer {
         height: 50px;
         width: 30vw;
@@ -38,17 +41,20 @@
         justify-content: space-evenly;
         padding: 10px;
     }
+
     @media screen and (max-width: 800px) {
         .footer {
             width: 60vw;
             left: 20%;
-            }
         }
+    }
+
     .icon-style {
         z-index: 1000;
         font-size: 30px;
         cursor: pointer;
     }
+
     .icon-style:hover {
         transition: font-size 0.5s;
         transition: color 0.35s linear;
@@ -57,29 +63,44 @@
     }
 }
 
-:host ::ng-deep .p-dialog{
-    .p-dialog-header {
-        background: transparent;
-        box-shadow: 0 0 1rem 0 rgb(0 0 0 / 45%);
-        border-radius: 15px 15px 0px 0px;
-        border-bottom: none;
-    }
-    .p-dialog-content {
-        background: transparent;
-        border-radius: 0px 0px 15px 15px;
-        box-shadow: 0 0 1rem 0 rgb(0 0 0 / 45%);
-        border-top: 2px solid;
-    }
-}
-
-.glass {
-    backdrop-filter: contrast(130%) brightness(120%) blur(2px);
-    background: radial-gradient( ellipse at 16.7% -10%, hsla(0, 0%, 100%, 0.44) 24%, hsla(0, 0%, 100%, 0.4) 25%, hsla(0, 0%, 100%, 0.2) 45%, hsla(0, 0%, 100%, 0.1) );
-    background-size: 300% 100%;
-    border-radius: 10px;
-    box-shadow: 0 2px 1px hsl(0deg 0% 100% / 50%) inset, 0 -2px 1px hsl(250deg 70% 5% / 30%) inset, 0 -2px 6px hsl(0deg 0% 100% / 25%);
-}
-
 .blur-effect {
     filter: blur(13px);
+}
+
+.dark-mode-switcher {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+
+    .checkbox {
+        opacity: 0;
+        position: absolute;
+    }
+
+    .label {
+        width: 45px;
+        height: 21px;
+        display: flex;
+        border-radius: 50px;
+        align-items: center;
+        justify-content: space-between;
+        padding: 5px;
+        position: relative;
+        transform: scale(1.5);
+    }
+
+    .ball {
+        width: 21px;
+        height: 21px;
+        background-color: white;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        border-radius: 50%;
+        transition: transform 0.2s linear;
+    }
+
+    .checkbox:checked+.label .ball {
+        transform: translateX(24px);
+    }
 }

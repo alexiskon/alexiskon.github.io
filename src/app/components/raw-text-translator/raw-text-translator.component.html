@@ -10,13 +10,12 @@
         </p-dropdown>
     </div>
     <div class="row space" style="justify-content: center;">
-        <button style="width: auto;" (click)="upload()" class="btn btn-outline-secondary" type="button"
-            id="inputGroupFileAddon04">Submit</button>
+        <button style="width: auto;" (click)="upload()" class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Submit</button>
     </div>
 </div>
 
 <div *ngIf="translationResultToDownloadText" class="d-flex space results">
     <h5 style="padding-left: unset!important">Results</h5>
-    <textarea style="min-height: 40vh;border-radius: 20px;width: 70vw;border: 3px solid;" pInputTextarea [disabled]="true" [ngModel]="translationResultToDownloadText"></textarea>
-    <button (click)="downloadGeneratedTranslations()" style="width: auto;margin: 20px;color: black;" pButton pRipple type="button" label="Download" class="p-button-raised p-button-info p-button-text"></button>
+    <textarea style="min-height: 40vh;border-radius: 20px;width: 70vw;border: 3px solid;" [disabled]="true" [ngModel]="translationResultToDownloadText"></textarea>
+    <button (click)="downloadGeneratedTranslations()" style="width: auto;margin: 20px;"  class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Download</button>
 </div>
