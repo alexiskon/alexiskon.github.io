@@ -16,17 +16,7 @@ export class JsonTranslatorComponent implements OnInit {
   file: any;
   source_language = 'en';
   target_language: any;
-
   translationResultToDownloadJson: any;
-  translationResultToDownloadText: any;
-  rawTextToTranslate: any;
-  translationResult: any;
-
-  textDetection: any;
-  languageDetectionResult: any;
-  textToDetectLanguage: any;
-
-  recorder: any;
 
   constructor(
     private apiService: ApiService,
@@ -47,6 +37,7 @@ export class JsonTranslatorComponent implements OnInit {
     fileReader.onerror = function () {
       self.toastService.errorMessage(`Please check the files 's format`);
     }
+    
   }
 
   upload() {

@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center" style="flex-direction: column;">
-    <div class="row">
+    <div class="row" style="padding: 30px;">
         <h4 class="text-style">Insert raw text to translate</h4>
-        <textarea [(ngModel)]="rawTextToTranslate" style="background: transparent;border: 1px solid;padding: 10px"
+        <textarea [(ngModel)]="rawTextToTranslate" style="background: transparent;border: 3px solid;padding: 10px;border-radius: 20px;"
             rows="5" cols="30" pInputTextarea></textarea>
     </div>
     <div class="d-flex justify-content-center align-items-center space">
@@ -17,6 +17,6 @@
 
 <div *ngIf="translationResultToDownloadText" class="d-flex space results">
     <h5 style="padding-left: unset!important">Results</h5>
-    <textarea style="min-height: 40vh;border-radius: 20px;width: 70vw;" pInputTextarea [disabled]="true" [ngModel]="translationResultToDownloadText"></textarea>
+    <textarea style="min-height: 40vh;border-radius: 20px;width: 70vw;border: 3px solid;" pInputTextarea [disabled]="true" [ngModel]="translationResultToDownloadText"></textarea>
     <button (click)="downloadGeneratedTranslations()" style="width: auto;margin: 20px;color: black;" pButton pRipple type="button" label="Download" class="p-button-raised p-button-info p-button-text"></button>
 </div>

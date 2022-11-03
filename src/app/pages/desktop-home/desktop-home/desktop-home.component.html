@@ -1,6 +1,11 @@
-<div class="main-container">
+<div class="main-container" [ngClass]="{'blur-effect': displayJsonFormatDialog || displayRawTextDialog || displayLanguageDetectionDialog || displayAudioRecordingDialog}">
     <div class="content">
-
+        <div class="d-flex justify-content-center">
+            <h3>Welcome</h3>
+        </div>
+        <div class="row d-flex justify-content-center space">
+            <span class="description-style">This application aims to automatically translate JSON and raw text inputs from English to four other languages, namely Spanish, French, Greek and German. It is based on deep learning techniques and specifically Neural Machine Translation. Compared to conventional statistical and rule-based translation algorithms, Neural Machine Translation uses deep learning models to provide translation that is more accurate and sounds more human. This translation service leverages EasyNMT (https://github.com/UKPLab/EasyNMT) package for fast and accurate translations and FastAPI (https://github.com/tiangolo/fastapi)for API calls. Finally, we target to provide asynchronous batch processing, with a single API call, in order to translate large collections of JSON files in a few seconds. </span>
+        </div>
     </div>
     <div class="footer">
         <span (click)="jsonFormatDialog()" pTooltip="JSON Format" style="margin-bottom: 5px;">
@@ -12,51 +17,23 @@
         <span (click)="languageDetectionDialog()" pTooltip="Language Detection">
             <fa-icon class="icon-style" [icon]="faLanguage"></fa-icon>
         </span>
+        <span (click)="audioRecordingDialog()" pTooltip="Audio Recording">
+            <fa-icon class="icon-style" [icon]="faMicrophone"></fa-icon>
+        </span>
     </div>
 </div>
 
-<p-dialog header="JSON Format" [modal]="true" [(visible)]="displayJsonFormatDialog" [style]="{'width': '70vw', 'height': '65vh'}">
-    <div class="upload-container">
-        <div class="d-flex justify-content-center">
-            <h4 class="text-style">Upload file to translate</h4>
-        </div>
-        <div class="input-group">
-            <input (change)="onFileChange($event)" type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-            <button (click)="upload()" class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Convert</button>
-            
-        </div>
-        <br/>
-        <div class="d-flex justify-content-center align-items-center">
-            <h5 class="text-style" style="margin-right: 5px;">Language to translate:</h5>
-            <p-dropdown [options]="languages" [(ngModel)]="target_language" optionLabel="name" optionValue="value"></p-dropdown>
-        </div>
-    </div>
+<p-dialog header="JSON Format" [maximizable]="true" [(visible)]="displayJsonFormatDialog" [style]="{'width': '80vw', 'height': '80vh', 'border': 'none'}">
+    <app-json-translator [languages]="languages"></app-json-translator>
 </p-dialog>
 
-<p-dialog header="Raw Text" [maximizable]="true" [modal]="true" [(visible)]="displayRawTextDialog">
-    <div class="d-flex justify-content-center" style="flex-direction: column;">
-        <div class="row">
-            <h4 class="text-style">Insert raw text to translate</h4>
-            <textarea [(ngModel)]="rawTextToTranslate" style="background: transparent;border: 1px solid;padding: 10px" rows="5" cols="30" pInputTextarea></textarea>
-        </div>
-        <div class="d-flex justify-content-center align-items-center space">
-            <h5 style="margin-right: 5px;">Language to translate:</h5>
-            <p-dropdown [options]="languages" [(ngModel)]="target_language" optionLabel="name" optionValue="value"></p-dropdown>
-        </div>
-        <div class="row space" style="justify-content: center;">
-            <button style="width: auto;" (click)="upload()" class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Submit</button>
-        </div>
-    </div>
+<p-dialog header="Raw Text" [maximizable]="true"[(visible)]="displayRawTextDialog" [style]="{'width': '80vw', 'height': '80vh', 'border': 'none'}">
+    <app-raw-text-translator [languages]="languages"></app-raw-text-translator>
 </p-dialog>
 
-<p-dialog header="Language Detection" [modal]="true" [(visible)]="displayLanguageDetectionDialog">
-    <div class="d-flex justify-content-center" style="flex-direction: column;">
-        <div class="row justify-content-center">
-            <h4 class="text-style">Insert raw text to detect the language</h4>
-            <textarea [(ngModel)]="textToDetectLanguage" style="background: transparent;border: 1px solid;padding: 10px;width: 50vw;" rows="5" cols="30" pInputTextarea></textarea>
-        </div>
-        <div class="row space" style="justify-content: center;">
-            <button style="width: auto;" (click)="textLanguageDetection()" class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Detect Language</button>
-        </div>
-    </div>
+<p-dialog header="Language Detection" [maximizable]="true" [(visible)]="displayLanguageDetectionDialog" [style]="{'width': '80vw', 'height': '80vh', 'border': 'none'}">
+    <app-language-detection></app-language-detection>
+</p-dialog>
+<p-dialog header="Audio Recording" [maximizable]="true" [(visible)]="displayAudioRecordingDialog" [breakpoints]="{'900px': '70vw'}" [style]="{'width': '40vw', 'height': '40vh', 'border': 'none'}">
+   <app-audio-recorder></app-audio-recorder>
 </p-dialog>

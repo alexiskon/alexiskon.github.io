@@ -12,20 +12,10 @@ export class RawTextTranslatorComponent implements OnInit {
 
   @Input('languages') languages: any;
 
-  file: any;
   source_language = 'en';
   target_language: any;
-
-  translationResultToDownloadJson: any;
   translationResultToDownloadText: any;
   rawTextToTranslate: any;
-  translationResult: any;
-
-  textDetection: any;
-  languageDetectionResult: any;
-  textToDetectLanguage: any;
-
-  recorder: any;
 
   constructor(
     private apiService: ApiService,

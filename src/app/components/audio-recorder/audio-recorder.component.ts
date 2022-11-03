@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ToastrService } from 'ngx-toastr';
-import { forkJoin, last } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
 import { AudioRecordingService } from 'src/app/services/audio-recording.service';
-import { AppToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-audio-recorder',
@@ -57,7 +55,6 @@ export class AudioRecorderComponent implements OnInit {
       this.audioRecordingService.stopRecording();
       this.isRecording = false;
       this.audioRecordingService.getRecordedBlob().subscribe((data) => {
-        console.log(data)
         this.blobUrl = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(data.blob));
         this.recordedAudio = data
       });

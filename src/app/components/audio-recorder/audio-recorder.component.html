@@ -1,9 +1,9 @@
-<div class="width-responsive space d-flex align-items-center justify-content-center" style="width: 40vw;">
+<div class="width-responsive space d-flex align-items-center justify-content-center">
     <audio *ngIf="!isRecording && blobUrl"  controls>
         <source [src]="blobUrl" type="audio/webm">
     </audio>
 </div>
-<div class="space d-flex align-items-center width-responsive" style="width: 40vw;justify-content: space-evenly;">
+<div class="space d-flex align-items-center width-responsive" style="justify-content: space-evenly;flex-wrap: wrap;">
     <button *ngIf="!isRecording && !blobUrl" (click)="startRecording()" pButton pRipple type="button" label="Start Recording" class="p-button-raised p-button-success p-button-text"></button>
     <button *ngIf="isRecording && !blobUrl" (click)="stopRecording()" pButton pRipple type="button" label="Stop Recording" class="p-button-raised p-button-danger"></button>
     <button *ngIf="!isRecording && blobUrl" (click)="clearRecordedData()" pButton pRipple type="button" label="Clear Recording" class="p-button-raised p-button-warning"></button>

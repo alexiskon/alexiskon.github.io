@@ -1,10 +1,29 @@
 .main-container {
     width: 100vw;
     height: 100vh;
-    background-image: linear-gradient(to right top, #363738, #aba9aa, #ffffff);
+    background-image: linear-gradient(to right top, #1f86ed, #edeaea, #ffffff);
+    overflow-x: hidden;
     .content {
-
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 20vh;
+        .description-style {
+            max-height: 40vh;
+            max-width: 70vw;
+            text-align: center;
+            box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2); 
+            border-radius: 5px;
+            overflow: hidden;
+            padding: 20px;
+          }
+        @media screen and (max-width: 600px) {
+        .description-style {
+            overflow-y: scroll;
+            }
+        }
     }
+    
     .footer {
         height: 50px;
         width: 30vw;
@@ -12,14 +31,19 @@
         bottom: 10px;
         left: 35%;
         border: 1px solid #c7c7c7;
-        box-shadow: 0px 0px 15px 7px #c7c7c7;
+        box-shadow: 0px 0px 15px 7px #f7f6f6;
         border-radius: 20px;
         display: flex;
         align-items: center;
         justify-content: space-evenly;
         padding: 10px;
-
     }
+    @media screen and (max-width: 800px) {
+        .footer {
+            width: 60vw;
+            left: 20%;
+            }
+        }
     .icon-style {
         z-index: 1000;
         font-size: 30px;
@@ -31,4 +55,27 @@
         font-size: 35px;
         color: #c7c7c7;
     }
+}
+
+:host ::ng-deep .p-dialog{
+    .p-dialog-header {
+        background: transparent;
+        // color: white;
+        border-radius: 5px;
+        border: 2px solid;
+        border-bottom: none;
+    }
+    // .p-dialog-header-icons button {
+        // color: white;
+    // }
+    .p-dialog-content {
+        background: transparent;
+        // color: white;
+        border-radius: 5px;
+        border: 2px solid;
+    }
+}
+
+.blur-effect {
+    filter: blur(10px);
 }

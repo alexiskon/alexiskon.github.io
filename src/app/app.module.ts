@@ -6,9 +6,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { HomeModule } from './pages/home/home.module';
-import { DesktopHomeModule } from './pages/desktop-home/desktop-home/desktop-home.module';
-
 @NgModule({
   declarations: [
     AppComponent
@@ -20,9 +17,7 @@ import { DesktopHomeModule } from './pages/desktop-home/desktop-home/desktop-hom
     LoadingBarHttpClientModule,
     ToastrModule.forRoot(),
     HttpClientModule,
-    LoadingBarHttpClientModule,
-    HomeModule,
-    DesktopHomeModule
+    LoadingBarHttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
