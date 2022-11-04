@@ -11,6 +11,13 @@
 .space {
     margin-top: 25px;
 }
+.textarea-style {
+    min-height: 40vh;
+    border-radius: 20px;
+    width: 70vw;
+    border: 3px solid;
+    background: transparent;
+}
 
 body.light-theme {
     background: white;

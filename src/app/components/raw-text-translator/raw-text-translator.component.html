@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center" style="flex-direction: column;">
     <div class="row" style="padding: 30px;">
         <h4 class="text-style">Insert raw text to translate</h4>
-        <textarea [(ngModel)]="rawTextToTranslate" style="background: transparent;border: 2px solid;padding: 10px;border-radius: 5px;"
+        <textarea [(ngModel)]="rawTextToTranslate" class="textarea-style"
             rows="5" cols="30" pInputTextarea></textarea>
     </div>
     <div class="d-flex justify-content-center align-items-center space">
@@ -16,6 +16,6 @@
 
 <div *ngIf="translationResultToDownloadText" class="d-flex space results">
     <h5 style="padding-left: unset!important">Results</h5>
-    <textarea style="min-height: 40vh;border-radius: 20px;width: 70vw;border: 3px solid;background: transparent;" [disabled]="true" [ngModel]="translationResultToDownloadText"></textarea>
+    <textarea class="textarea-style" [disabled]="true" [ngModel]="translationResultToDownloadText"></textarea>
     <button (click)="downloadGeneratedTranslations()" style="width: auto;margin: 20px;"  class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Download</button>
 </div>
