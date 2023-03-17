@@ -4,14 +4,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from 'primeng/api';
 
 const routes: Routes = [
-  { path: "projects",
+  { path: "",
     component: CvProjectsComponent
   }
 ];
 
 @NgModule({
   declarations: [
-    CvProjectsModule
+    CvProjectsComponent
   ],
   imports: [
     RouterModule.forChild(routes),

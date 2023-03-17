@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from 'primeng/api';
 
 const routes: Routes = [
-  { path: "about",
+  { path: "",
     component: CvAboutComponent
   }
 ];
