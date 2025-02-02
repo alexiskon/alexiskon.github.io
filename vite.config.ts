@@ -5,7 +5,7 @@ import path from 'path';
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/alexiskon.github.io/',
+  base: 'https://github.com/alexiskon/alexiskon.github.io.git',
   build: {
     outDir: 'docs'
   },
