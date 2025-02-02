@@ -6,6 +6,9 @@ import path from 'path';
 export default defineConfig({
   plugins: [react()],
   base: '/alexiskon.github.io/',
+  build: {
+    outDir: 'docs'
+  },
   resolve: {
     alias: {
       '@images': path.resolve(__dirname, './src/assets/images'),
