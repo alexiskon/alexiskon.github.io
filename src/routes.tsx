@@ -6,10 +6,10 @@ import Breeds from "./pages/Breeds/Breeds";
 
 export const routeConfig = () => [
     { path: "*", element: <Navigate to="/" replace /> },
-    {path: '/', element: <Home />, label: 'Home', headerDisplay: true},
-    {path: "/:id?", element: <Home />, label: '', headerDisplay: false},
-    {path: '/breeds', element: <Breeds />, label: 'Breeds', headerDisplay: true},
-    {path: '/favourites', element: <Favourites />, label: 'Favourites', headerDisplay: true}
+    {path: '', element: <Home />, label: 'Home', headerDisplay: true},
+    {path: ":id?", element: <Home />, label: '', headerDisplay: false},
+    {path: 'breeds', element: <Breeds />, label: 'Breeds', headerDisplay: true},
+    {path: 'favourites', element: <Favourites />, label: 'Favourites', headerDisplay: true}
 ]
 
 const AppRoutes: React.FC = () => {
